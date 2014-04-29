@@ -2,7 +2,7 @@ body {
     background: #eee;
     text-align: center;
     padding: 0 25px;
-    font-family: arial, sans-serif;
+    font-family: Audiowide, sans-serif;
 }
 
 #chatlog {
@@ -10,14 +10,22 @@ body {
 }
 
 .message {
+  position: absolute;
   border: 2px solid grey;
-  font-family: helvetica;
+  border-radius: 6px;
+  background: -webkit-linear-gradient(top, #fff 0%, #E0EEEE 100%);
+  font-family: Audiowide, helvetica;
   margin: 5px 0 5px 0;
+  padding: 3px;
+  width: 500px;
+  /*transform: perspective( 600px) rotateY(45deg);
+  -webkit-transform: perspective( 600px) rotateY(45deg);*/
 }
 
 .msg {
+  font-family: Aldrich;
   font-size: 12px;
-  height: 15px;
+  height: 30px;
 }
 
 .room {
@@ -30,8 +38,7 @@ body {
  color: grey;
  font-size: 14px;
  font-weight: bold;
-  height: 15px;
-
+ height: 18px;
 }
 
 .time {

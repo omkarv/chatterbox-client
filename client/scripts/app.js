@@ -3,7 +3,7 @@ var app = {
   init: function () {
     var that = this;
     that.fetch();
-   // that.listRooms();
+    that.listRooms();
     setInterval(function(){
        that.fetch();
     }, 3000);
@@ -26,8 +26,6 @@ var app = {
             .text(function(d){return d;});
     console.log(roomList);
     d3.select('select').on('change', function(){
-    //  console.log(d3.event);
-      console.log(d3.event.target.selectedOptions[0].innerText);
       that.filter = d3.event.target.selectedOptions[0].innerText;
       that.render();
     });
@@ -67,7 +65,7 @@ var app = {
   },
   render: function() {
     var that = this;
-    d3.selectAll('.message').remove();
+    // d3.selectAll('.message').remove();
     var color =  d3.scale.category10(), data;
     //this.listRooms(
 
@@ -77,11 +75,21 @@ var app = {
       data = this.store.sort(this.compare);
     }
 
-    d3.select('#chatlog').selectAll('.message')
-      .data(data, function (d) { return d.objectId; })
-      .enter()
+    var elems = d3.select('#chatlog').selectAll('.message')
+      .data(data, function (d) { return d.objectId; });
+
+// -webkit-transform:rotateX(120deg)
+//
+//
+//
+//
+    elems.enter()
         .append('div')
           .attr('class', 'message')
+          .style("top", function (d, i) { return ((i * 90) + 250) + "px"; })
+          .style("left", "100px")
+          .style("-webkit-transform", "perspective( 600px) rotateX(45deg)")
+         // .style("-webkit-transform","rotateX(180deg)")
         .each(function(d){
           d3.select(this)
             .append('div')
@@ -98,8 +106,16 @@ var app = {
 
           d3.select(this)
             .append('div')
-              .attr('class', 'time').text(function(d){return d.createdAt;});
-        });
+              .attr('class', 'time').text(function(d){
+                return d.createdAt.slice(0,10) + " " + d.createdAt.slice(11,19);
+              });
+        })
+        .transition().duration(3000)
+          .style("left", "500px")
+          .style("-webkit-transform", "perspective(600px) rotateX(0deg)");
+
+    elems.attr('class', 'message')
+      .style("top", function (d, i) { return ((i * 90) + 250) + "px"; });
 
   },
   compare: function(a,b) {
@@ -115,7 +131,7 @@ var app = {
     var that = this;
     $.ajax({
       url : 'https://api.parse.com/1/classes/chatterbox',
-      data : {order: "-createdAt"},
+      // data : {order: "-createdAt"},
       type : "GET",
       cache : false,
       accept: '*/*',
