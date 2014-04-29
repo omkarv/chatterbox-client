@@ -7,14 +7,42 @@
 
     <!-- dependencies -->
     <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
     <!-- your scripts -->
     <script src="scripts/config.js"></script>
     <script src="scripts/app.js"></script>
   </head>
   <body>
     <div id="main">
-      <h1>chatterbox</h1>
+    <h2>The Chat App</h2>
+    <input class="draft" type="text" value="Message" autofocus/>
+    <br>
+    <input class="room" type="text" value="Chat Room"/>
+    <button class="send">send</button>
+    <button class="refresh">Refresh Rooms</button>
+    <select>
+    </select>
+    <div id="chatlog"></div>
+        <script>
+          app.init();
+
+          $(document).ready(function() {
+
+            $('.send').on('click', app.onInput);
+
+            $(".draft").keyup(function (e) {
+              if (e.keyCode == 13) {
+                app.onInput();
+              }
+            });
+
+            $('.refresh').on('click', function () {
+              app.listRooms();
+            });
+          });
+
+        </script>
       <!-- Your HTML goes here! -->
-    </div>
   </body>
 </html>

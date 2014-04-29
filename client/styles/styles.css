@@ -5,6 +5,44 @@ body {
     font-family: arial, sans-serif;
 }
 
+#chatlog {
+  width: 500px;
+}
+
+.message {
+  border: 2px solid grey;
+  font-family: helvetica;
+  margin: 5px 0 5px 0;
+}
+
+.msg {
+  font-size: 12px;
+  height: 15px;
+}
+
+.room {
+  font-size: 10px;
+  font-weight: bold;
+  height: 15px;
+}
+
+.user {
+ color: grey;
+ font-size: 14px;
+ font-weight: bold;
+  height: 15px;
+
+}
+
+.time {
+  font-size: 10px;
+  height: 15px;
+}
+
+.msgInput {
+    width: 150px;
+}
+
 #main {
     width: 500px;
     margin: auto;
